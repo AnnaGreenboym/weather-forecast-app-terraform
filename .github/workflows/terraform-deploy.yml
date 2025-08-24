@@ -1,0 +1,53 @@
+name: 'Deploy Terraform Infrastructure to Azure'
+
+# This workflow runs when you push to the 'main' branch or run it manually.
+on:
+  workflow_dispatch:
+
+# These environment variables are used by the Terraform commands.
+env:
+  # You must create these as secrets in your GitHub repository settings.
+  TF_VAR_postgres_admin_password: ${{ secrets.POSTGRES_ADMIN_PASSWORD }}
+
+jobs:
+  terraform:
+    name: 'Terraform Apply'
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        shell: bash
+        working-directory: .
+
+    steps:
+      # 1. Checks out repository code so the workflow can access it.
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # 2. Logs in to Azure using the Service Principal credentials stored in GitHub secrets.
+      - name: Log in to Azure
+        uses: azure/login@v1
+        with:
+          creds: |
+            {
+              "clientId": "${{ secrets.AZURE_CLIENT_ID }}",
+              "clientSecret": "${{ secrets.AZURE_CLIENT_SECRET }}",
+              "subscriptionId": "${{ secrets.AZURE_SUBSCRIPTION_ID }}",
+              "tenantId": "${{ secrets.AZURE_TENANT_ID }}"
+            }
+
+      # 3. Installs the Terraform CLI on the runner.
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      # 4. Runs 'terraform init' to initialize the modules and provider.
+      - name: Terraform Init
+        run: terraform init
+
+      # 5. Runs 'terraform plan' to see what changes will be made.
+      - name: Terraform Plan
+        run: terraform plan
+
+      # 6. Runs 'terraform apply' to build the infrastructure.
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
