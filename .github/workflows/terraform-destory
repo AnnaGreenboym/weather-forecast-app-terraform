@@ -1,0 +1,59 @@
+name: 'Destroy Terraform Infrastructure in Azure'
+
+# --- Trigger Conditions ---
+# This workflow will ONLY run when you manually trigger it from the GitHub Actions tab.
+# This prevents accidental destruction on a code push.
+on:
+  workflow_dispatch:
+
+# --- Environment Variables ---
+# These variables are used by the Terraform commands.
+env:
+  # You must have these secrets configured in your GitHub repository settings.
+  TF_VAR_postgres_admin_password: ${{ secrets.POSTGRES_ADMIN_PASSWORD }}
+
+jobs:
+  terraform-destroy:
+    name: 'Terraform Destroy'
+    runs-on: ubuntu-latest
+    
+    # All commands will run from your 'teraform' subfolder.
+    defaults:
+      run:
+        shell: bash
+        working-directory: .
+
+    steps:
+      # Step 1: Checks out your repository code.
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Step 2: Logs in to Azure using the Service Principal credentials.
+      - name: Log in to Azure
+        uses: azure/login@v1
+        with:
+          creds: |
+            {
+              "clientId": "${{ secrets.AZURE_CLIENT_ID }}",
+              "clientSecret": "${{ secrets.AZURE_CLIENT_SECRET }}",
+              "subscriptionId": "${{ secrets.AZURE_SUBSCRIPTION_ID }}",
+              "tenantId": "${{ secrets.AZURE_TENANT_ID }}"
+            }
+
+      # Step 3: Installs the Terraform CLI.
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      # Step 4: Initializes Terraform with the remote backend configuration.
+      - name: Terraform Init
+        run: |
+          terraform init \
+            -backend-config="resource_group_name=${{ vars.STATE_RG }}" \
+            -backend-config="storage_account_name=${{ vars.STATE_STORAGE_ACCOUNT }}" \
+            -backend-config="container_name=${{ vars.STATE_CONTAINER }}" \
+            -backend-config="key=prod.terraform.tfstate"
+
+      # Step 5: Runs 'terraform destroy' to remove all infrastructure.
+      # The -auto-approve flag skips the manual "yes" confirmation.
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve
