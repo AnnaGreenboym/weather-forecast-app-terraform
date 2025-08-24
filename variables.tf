@@ -21,3 +21,8 @@ variable "postgres_admin_password" {
   type        = string
   sensitive   = true
 }
+
+variable "app_github_repo_url" {
+  description = "The URL of the separate GitHub repository containing the Python application code."
+  type        = string
+}
