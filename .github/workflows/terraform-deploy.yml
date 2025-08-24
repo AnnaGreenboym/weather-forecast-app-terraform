@@ -40,9 +40,14 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
 
-      # 4. Runs 'terraform init' to initialize the modules and provider.
+      # 4. Runs 'terraform init' and configures the backend.
       - name: Terraform Init
-        run: terraform init
+        run: |
+          terraform init \
+            -backend-config="resource_group_name=${{ vars.STATE_RG }}" \
+            -backend-config="storage_account_name=${{ vars.STATE_STORAGE_ACCOUNT }}" \
+            -backend-config="container_name=${{ vars.STATE_CONTAINER }}" \
+            -backend-config="key=prod.terraform.tfstate"
 
       # 5. Runs 'terraform plan' to see what changes will be made.
       - name: Terraform Plan
