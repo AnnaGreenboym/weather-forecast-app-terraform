@@ -18,6 +18,7 @@ module "app_service" {
   prefix              = var.prefix
   location            = var.location
   resource_group_name = azurerm_resource_group.rg.name
+  app_github_repo_url = var.app_github_repo_url
 }
 
 # 3. Database Module
