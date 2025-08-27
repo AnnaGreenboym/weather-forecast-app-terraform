@@ -21,3 +21,9 @@ variable "postgres_admin_password" {
   type        = string
   sensitive   = true
 }
+
+variable "docker_image_name" {
+  description = "The name of the Docker image to be deployed (e.g., your-repo/app)."
+  type        = string
+  default     = "aztek-weather-app"
+}
