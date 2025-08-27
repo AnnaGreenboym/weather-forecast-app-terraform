@@ -12,3 +12,8 @@ output "key_vault_uri" {
   description = "The URI of the Key Vault for storing secrets."
   value       = module.key_vault.key_vault_uri
 }
+
+output "container_registry_login_server" {
+  description = "The login server for the Azure Container Registry."
+  value       = module.acr.login_server
+}
