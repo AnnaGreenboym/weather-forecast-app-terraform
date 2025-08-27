@@ -12,9 +12,16 @@ resource "azurerm_linux_web_app" "app" {
   location            = var.location
   service_plan_id     = azurerm_service_plan.plan.id
 
+  # This app setting is required to tell the App Service which port the container is listening on.
+  app_settings = {
+    "WEBSITES_PORT" = "8000"
+  }
+
   site_config {
+    # This block tells the App Service to run a Docker container.
     application_stack {
-      python_version = "3.9"
+      docker_image_name   = "${var.acr_login_server}/${var.docker_image_name}:latest"
+      docker_registry_url = "https://${var.acr_login_server}"
     }
   }
   
