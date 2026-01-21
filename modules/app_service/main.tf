@@ -14,11 +14,19 @@ resource "azurerm_linux_web_app" "app" {
 
   site_config {
     application_stack {
-      python_version = "3.9"
+      docker_registry_url = "https://${var.login_server}"
+      docker_image_name   = var.image_name
+      docker_image_tag    = var.image_tag   # e.g. "latest"
     }
   }
-  
-  identity {
-    type = "SystemAssigned"
+
+  app_settings = {
+    # Required for many containers on App Service
+    WEBSITES_PORT = tostring(var.container_port)  # e.g. 8000
+
+    # Your app env vars
   }
+
+  identity { type = "SystemAssigned" }
 }
+
