@@ -46,12 +46,13 @@ jobs:
 
       # Step 4: Initializes Terraform with the remote backend configuration.
       - name: Terraform Init
-        run: |
-          terraform init \
-            -backend-config="resource_group_name=${{ vars.STATE_RG }}" \
-            -backend-config="storage_account_name=${{ vars.STATE_STORAGE_ACCOUNT }}" \
-            -backend-config="container_name=${{ vars.STATE_CONTAINER }}" \
-            -backend-config="key=prod.terraform.tfstate"
+        run: terraform init
+        #run: |
+         # terraform init \
+          #  -backend-config="resource_group_name=${{ vars.STATE_RG }}" \
+           # -backend-config="storage_account_name=${{ vars.STATE_STORAGE_ACCOUNT }}" \
+            #-backend-config="container_name=${{ vars.STATE_CONTAINER }}" \
+            #-backend-config="key=prod.terraform.tfstate"
 
       # Step 5: Runs 'terraform destroy' to remove all infrastructure.
       # The -auto-approve flag skips the manual "yes" confirmation.
