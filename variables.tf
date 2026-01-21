@@ -21,3 +21,18 @@ variable "postgres_admin_password" {
   type        = string
   sensitive   = true
 }
+
+variable "login_server" {
+  description = "ACR login server"
+  type        = string
+}
+
+variable "image_name" {
+  description = "image name"
+  type        = string
+}
+
+variable "image_tag" {
+  description = "image tag"
+  type        = string
+}
