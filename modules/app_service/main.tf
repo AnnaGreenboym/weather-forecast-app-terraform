@@ -16,7 +16,6 @@ resource "azurerm_linux_web_app" "app" {
     application_stack {
       docker_registry_url = "https://${var.login_server}"
       docker_image_name   = var.image_name
-      docker_image_tag    = var.image_tag   # e.g. "latest"
     }
   }
 

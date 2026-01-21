@@ -23,7 +23,3 @@ variable "image_name" {
   type        = string
 }
 
-variable "image_tag" {
-  description = "image tag"
-  type        = string
-}

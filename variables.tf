@@ -31,12 +31,7 @@ variable "login_server" {
 variable "image_name" {
   description = "image name"
   type        = string
-  default     = "weather-app"
+  default     = "weather-app:latest"
 }
 
-variable "image_tag" {
-  description = "image tag"
-  type        = string
-  default     = "latest"
-}
 
