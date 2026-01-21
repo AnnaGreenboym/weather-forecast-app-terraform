@@ -21,6 +21,7 @@ module "app_service" {
   login_server        = var.login_server
   image_name          = var.image_name
   image_tag           = var.image_tag
+  container_port      = var.container_port
 }
 
 # 3. Database Module
