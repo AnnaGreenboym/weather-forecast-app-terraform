@@ -13,7 +13,7 @@ variable "location" {
 variable "postgres_admin_login" {
   description = "The administrator username for the PostgreSQL database."
   type        = string
-  default     = "admin"
+  default     = "postadmin"
 }
 
 variable "postgres_admin_password" {
