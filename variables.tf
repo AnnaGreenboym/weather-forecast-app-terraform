@@ -1,19 +1,19 @@
 variable "prefix" {
   description = "A unique prefix for all resource names to avoid naming conflicts."
   type        = string
-  default     = "aztek-weather-app"
+  default     = "weather-app"
 }
 
 variable "location" {
   description = "The Azure region where resources will be created."
   type        = string
-  default     = "North Europe"
+  default     = "eastus"
 }
 
 variable "postgres_admin_login" {
   description = "The administrator username for the PostgreSQL database."
   type        = string
-  default     = "aztekadmin"
+  default     = "admin"
 }
 
 variable "postgres_admin_password" {
@@ -25,14 +25,17 @@ variable "postgres_admin_password" {
 variable "login_server" {
   description = "ACR login server"
   type        = string
+  default     = "weathercontainerregistry.azurecr.io"
 }
 
 variable "image_name" {
   description = "image name"
   type        = string
+  default     = "weather-app"
 }
 
 variable "image_tag" {
   description = "image tag"
   type        = string
+  default     = "latest"
 }
