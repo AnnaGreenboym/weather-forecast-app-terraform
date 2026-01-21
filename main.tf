@@ -12,13 +12,16 @@ resource "azurerm_resource_group" "rg" {
 }
 
 # 2. App Service Module
-# module "app_service" {
-#  source = "./modules/app_service" # Path to the module folder
-#
-#  prefix              = var.prefix
-#  location            = var.location
-#  resource_group_name = azurerm_resource_group.rg.name
-#}
+module "app_service" {
+  source = "./modules/app_service" # Path to the module folder
+
+  prefix              = var.prefix
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+  login_server        = var.login_server
+  image_name          = var.image_name
+  image_tag           = var.image_tag
+}
 
 # 3. Database Module
 module "database" {
