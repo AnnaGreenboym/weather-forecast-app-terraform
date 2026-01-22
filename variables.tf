@@ -7,7 +7,7 @@ variable "prefix" {
 variable "location" {
   description = "The Azure region where resources will be created."
   type        = string
-  default     = "North Europe"
+  default     = "Israel Center"
 }
 
 variable "postgres_admin_login" {
