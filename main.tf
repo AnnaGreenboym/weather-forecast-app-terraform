@@ -20,6 +20,7 @@ module "app_service" {
   resource_group_name = azurerm_resource_group.rg.name
   login_server        = var.login_server
   image_name          = var.image_name
+  depends_on          = [module.database]
 
 }
 
