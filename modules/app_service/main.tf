@@ -22,6 +22,7 @@ resource "azurerm_linux_web_app" "app" {
   app_settings = {
     # Required for many containers on App Service
     #WEBSITES_PORT = tostring(var.container_port)  # e.g. 8000
+    WEBSITES_PORT = "5000"
 
     # Your app env vars
   }
