@@ -1,3 +1,8 @@
+data "azurerm_container_registry" "acr" {
+  name                = "fredistupid"
+  resource_group_name = "rg-working-israel"
+}
+
 resource "azurerm_service_plan" "plan" {
   name                = "${var.prefix}-plan"
   resource_group_name = var.resource_group_name
@@ -32,7 +37,7 @@ resource "azurerm_linux_web_app" "app" {
 }
 
 resource "azurerm_role_assignment" "acr_pull" {
-  scope                = azurerm_container_registry.acr.id
+  scope                = data.azurerm_container_registry.acr.id
   role_definition_name = "AcrPull"
   principal_id         = azurerm_linux_web_app.app.identity[0].principal_id
 }
