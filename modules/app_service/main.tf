@@ -1,5 +1,5 @@
 data "azurerm_container_registry" "acr" {
-  name                = "fredistupid"
+  name                = "weatherimage"
   resource_group_name = "rg-working-israel"
 }
 
