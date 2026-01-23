@@ -13,6 +13,7 @@ resource "azurerm_linux_web_app" "app" {
   service_plan_id     = azurerm_service_plan.plan.id
 
   site_config {
+    container_registry_use_managed_identity = true
     application_stack {
       docker_registry_url = "https://${var.login_server}"
       docker_image_name   = var.image_name
@@ -30,3 +31,8 @@ resource "azurerm_linux_web_app" "app" {
   identity { type = "SystemAssigned" }
 }
 
+resource "azurerm_role_assignment" "acr_pull" {
+  scope                = azurerm_container_registry.acr.id
+  role_definition_name = "AcrPull"
+  principal_id         = azurerm_linux_web_app.app.identity[0].principal_id
+}
