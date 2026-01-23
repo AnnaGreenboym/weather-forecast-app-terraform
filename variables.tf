@@ -25,7 +25,7 @@ variable "postgres_admin_password" {
 variable "login_server" {
   description = "ACR login server"
   type        = string
-  default     = "fredistupid.azurecr.io"
+  default     = "weatherimage.azurecr.io"
 }
 
 variable "image_name" {
