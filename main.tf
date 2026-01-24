@@ -20,8 +20,13 @@ module "app_service" {
   resource_group_name = azurerm_resource_group.rg.name
   login_server        = var.login_server
   image_name          = var.image_name
-  depends_on          = [module.database]
-
+  admin_login         = var.postgres_admin_login
+  admin_password      = var.postgres_admin_password
+  api_key             = var.api_key
+  app_encryption_key  = var.app_encryption_key
+  database_hostname   = module.database.db_hostname 
+  database_name       = module.database.db_name
+  depends_on          = [module.database]     
 }
 
 # 3. Database Module
