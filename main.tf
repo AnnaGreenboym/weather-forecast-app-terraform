@@ -21,9 +21,9 @@ module "app_service" {
   login_server        = var.login_server
   image_name          = var.image_name
   admin_login         = var.postgres_admin_login
-  admin_password      = var.postgres_admin_password
-  api_key             = var.api_key
-  app_encryption_key  = var.app_encryption_key
+  admin_password      = data.azurerm_key_vault_secret.db_password.value
+  api_key             = data.azurerm_key_vault_secret.api_key.value
+  app_encryption_key  = data.azurerm_key_vault_key.app_encryption_key.value
   database_hostname   = module.database.db_hostname 
   database_name       = module.database.db_name
   depends_on          = [module.database]     
@@ -37,7 +37,7 @@ module "database" {
   location               = var.location
   resource_group_name    = azurerm_resource_group.rg.name
   admin_login            = var.postgres_admin_login
-  admin_password         = var.postgres_admin_password
+  admin_password         = data.azurerm_key_vault_secret.db_password.value
   local_developer_ip     = data.http.myip.response_body
 }
 
