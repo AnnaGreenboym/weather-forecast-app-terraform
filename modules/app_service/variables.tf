@@ -23,11 +23,6 @@ variable "image_name" {
   type        = string
 }
 
-variable "postgres_admin_password" {
-  description = "The administrator password for the PostgreSQL database. MUST be complex."
-  type        = string
-  sensitive   = true
-}
 
 variable "api_key" {
   description = "API key for weather service."
@@ -53,14 +48,14 @@ variable "admin_password" {
   sensitive   = true
 }
 
-variable "database_name" {
-  description = "The name of the PostgreSQL database."
-  type        = string
+# variable "database_name" {
+#   description = "The name of the PostgreSQL database."
+#   type        = string
   
-}
+# }
 
-variable "database_hostname" {
-  description = "The FQDN of the PostgreSQL server."
-  type        = string
+# variable "database_hostname" {
+#   description = "The FQDN of the PostgreSQL server."
+#   type        = string
   
-}
+# }

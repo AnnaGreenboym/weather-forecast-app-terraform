@@ -13,7 +13,7 @@ data "azurerm_key_vault_secret" "api_key" {
   key_vault_id = data.azurerm_key_vault.existing_keyvault.id
 }
 
-data "azurerm_key_vault_key" "app_encryption_key" {
+data "azurerm_key_vault_secret" "app_encryption_secret" {
   name         = "key-app-weather"
   key_vault_id = data.azurerm_key_vault.existing_keyvault.id
 }
