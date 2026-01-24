@@ -7,6 +7,6 @@ output "database_hostname" {
 
 output "database_name" {
   description = "The name of the PostgreSQL database."
-  value       = azurerm_postgresql_flexible_server_database.db_database.name
+  value       = azurerm_postgresql_flexible_server.db.name
   
 }

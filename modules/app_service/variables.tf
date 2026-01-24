@@ -23,11 +23,6 @@ variable "image_name" {
   type        = string
 }
 
-variable "postgres_admin_password" {
-  description = "The administrator password for the PostgreSQL database. MUST be complex."
-  type        = string
-  sensitive   = true
-}
 
 variable "api_key" {
   description = "API key for weather service."
