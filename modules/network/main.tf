@@ -27,6 +27,14 @@ resource "azurerm_subnet" "app" {
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = var.app_subnet_cidr
+
+  delegation {
+    name = "appservice-delegation"
+    service_delegation {
+      name    = "Microsoft.Web/serverFarms"
+     actions = ["Microsoft.Network/virtualNetworks/subnets/join/action"]
+    }
+  }
 }
 
 resource "azurerm_private_dns_zone" "pg" {
