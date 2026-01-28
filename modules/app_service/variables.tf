@@ -61,5 +61,12 @@ variable "database_hostname" {
 
 variable "app_subnet_id" {
   type        = string
+}
 
+variable "acr_name" {
+  type        = string
+}
+
+variable "acr_resource_group_name" {
+  type        = string
 }

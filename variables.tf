@@ -16,27 +16,6 @@ variable "postgres_admin_login" {
   default     = "postadmin"
 }
 
-# variable "postgres_admin_password" {
-#   description = "The administrator password for the PostgreSQL database. MUST be complex."
-#   type        = string
-#   sensitive   = true
-#   default     = data.azurerm_key_vault_secret.db_password.value
-# }
-
-# variable "api_key" {
-#   description = "API key for weather service."
-#   type        = string
-#   sensitive   = true
-#   default     = data.azurerm_key_vault_secret.api_key.value
-# }
-
-# variable "app_encryption_key" {
-#   description = "Encryption key for the application."
-#   type        = string
-#   sensitive   = true
-#   default     = data.azurerm_key_vault_key.app_encryption_key.key_vault_key_id
-#}
-
 variable "login_server" {
   description = "ACR login server"
   type        = string
@@ -70,3 +49,12 @@ variable "app_subnet_cidr" {
   default = ["10.10.2.0/24"]
 }
 
+variable "acr_name" {
+  type        = string
+  default  = "weatherimage"
+}
+
+variable "acr_resource_group_name" {
+  type        = string
+  default   = "rg-working-israel"
+}

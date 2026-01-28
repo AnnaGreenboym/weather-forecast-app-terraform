@@ -1,6 +1,6 @@
 data "azurerm_container_registry" "acr" {
-  name                = "weatherimage"
-  resource_group_name = "rg-working-israel"
+  name                = var.acr_name 
+  resource_group_name = var.acr_resource_group_name 
 }
 
 resource "azurerm_service_plan" "plan" {
@@ -27,14 +27,10 @@ resource "azurerm_linux_web_app" "app" {
   }
 
   app_settings = {
-    # Required for many containers on App Service
-    #WEBSITES_PORT = tostring(var.container_port)  # e.g. 8000
     WEBSITES_PORT = "5000"
-    OPENWEATHER_API_KEY= var.api_key
-    DATABASE_URL= "postgresql://${var.admin_login}:${var.admin_password}@${var.database_hostname}:5432/${var.database_name}"
-  
-    SECRET_KEY= var.app_encryption_key
-    # Your app env vars
+    OPENWEATHER_API_KEY = var.api_key
+    DATABASE_URL = "postgresql://${var.admin_login}:${var.admin_password}@${var.database_hostname}:5432/${var.database_name}"
+    SECRET_KEY = var.app_encryption_key
   }
 
   identity { type = "SystemAssigned" }

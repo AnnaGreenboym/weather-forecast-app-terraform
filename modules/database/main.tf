@@ -30,10 +30,3 @@ resource "azurerm_postgresql_flexible_server_firewall_rule" "local_access" {
   start_ip_address = var.local_developer_ip
   end_ip_address   = var.local_developer_ip
 }
-
-resource "azurerm_postgresql_flexible_server_firewall_rule" "azure_services_access" {
-  name             = "allow-azure-internal"
-  server_id        = azurerm_postgresql_flexible_server.db.id
-  start_ip_address = "0.0.0.0"
-  end_ip_address   = "0.0.0.0"
-}
