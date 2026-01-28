@@ -26,8 +26,8 @@ module "app_service" {
   api_key             = data.azurerm_key_vault_secret.api_key.value
   app_encryption_key  = data.azurerm_key_vault_secret.app_encryption_secret.value
   database_hostname   = module.database.database_hostname
-  #database_name       = module.database.database_name
-  app_subnet_cidr     = module.network.app_subnet_cidr
+  #database_name      = module.database.database_name
+  app_subnet_id       = module.network.app_subnet_id
 
   depends_on          = [module.database]
        
