@@ -30,7 +30,7 @@ resource "azurerm_linux_web_app" "app" {
     #WEBSITES_PORT = tostring(var.container_port)  # e.g. 8000
     WEBSITES_PORT = "5000"
     OPENWEATHER_API_KEY= var.api_key
-    DATABASE_URL= "postgresql://${var.admin_login}:${var.admin_password}@${var.database_hostname}:5432/${var.database_name}"
+    DATABASE_URL= "postgresql://${var.admin_login}:${var.admin_password}@${var.database_hostname}:5432/postgres"
   
     SECRET_KEY= var.app_encryption_key
     # Your app env vars
