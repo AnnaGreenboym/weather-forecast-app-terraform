@@ -54,7 +54,7 @@ variable "acr_name" {
   default  = "weatherimage"
 }
 
-variable "acr_resource_group_name" {
+variable "acr_rg_name" {
   type        = string
   default   = "rg-working-israel"
 }

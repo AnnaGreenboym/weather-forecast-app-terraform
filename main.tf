@@ -47,6 +47,8 @@ module "app_service" {
   image_name          = var.image_name
   admin_login         = var.postgres_admin_login
   database_name       = var.database_name
+  acr_name            = var.acr_name
+  acr_rg_name         = var.acr_rg_name 
   resource_group_name = azurerm_resource_group.rg.name
   admin_password      = data.azurerm_key_vault_secret.db_password.value
   api_key             = data.azurerm_key_vault_secret.api_key.value

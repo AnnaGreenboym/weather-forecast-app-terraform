@@ -67,6 +67,6 @@ variable "acr_name" {
   type        = string
 }
 
-variable "acr_resource_group_name" {
+variable "acr_rg_name" {
   type        = string
 }
