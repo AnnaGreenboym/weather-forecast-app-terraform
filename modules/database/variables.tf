@@ -34,7 +34,7 @@ variable "database_name" {
   type        = string
 }
 
-variable "db_subnet_cidr" {
+variable "db_subnet_id" {
   type    = string
 }
 
