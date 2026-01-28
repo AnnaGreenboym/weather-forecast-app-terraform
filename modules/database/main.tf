@@ -13,6 +13,14 @@ resource "azurerm_postgresql_flexible_server" "db" {
   public_network_access_enabled = true
 }
 
+resource "azurerm_postgresql_flexible_server_database" "appdb" {
+  name      = var.database_name
+  server_id = azurerm_postgresql_flexible_server.db.id
+  collation = "en_US.utf8"
+  charset   = "UTF8"
+}
+
+
 resource "azurerm_postgresql_flexible_server_firewall_rule" "local_access" {
   name             = "allow-local-dev-ip"
   server_id        = azurerm_postgresql_flexible_server.db.id

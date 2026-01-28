@@ -49,4 +49,9 @@ variable "image_name" {
   default     = "weather-app:latest"
 }
 
+variable "database_name" {
+  description = "The name of the PostgreSQL database."
+  type        = string
+  default     = "weatherdb"
+}
 
