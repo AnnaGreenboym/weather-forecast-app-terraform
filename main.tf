@@ -60,3 +60,15 @@ module "key_vault" {
   tenant_id               = data.azurerm_client_config.current.tenant_id
   app_service_principal_id = module.app_service.app_identity_principal_id # Get output from another module
 }
+
+# 5. Network Module
+module "network" {
+  source = "./modules/network"
+
+  prefix                 = var.prefix
+  location               = var.location
+  resource_group_name    = azurerm_resource_group.rg.name
+  vnet_cidr              = var.vnet_cidr
+  db_subnet_cidr         = var.db_subnet_cidr
+  app_subnet_cidr        = var.app_subnet_cidr
+}

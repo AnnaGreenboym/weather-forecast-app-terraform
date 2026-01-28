@@ -59,7 +59,7 @@ variable "database_hostname" {
 
 }
 
-variable "app_subnet_cidr" {
+variable "app_subnet_id" {
   type        = string
 
 }

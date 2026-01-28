@@ -26,7 +26,7 @@ resource "azurerm_subnet" "app" {
   name                 = "${var.prefix}-app-subnet"
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = app_subnet_cidr
+  address_prefixes     = var.app_subnet_cidr
 }
 
 resource "azurerm_private_dns_zone" "pg" {
