@@ -51,11 +51,10 @@ variable "admin_password" {
 variable "database_name" {
   description = "The name of the PostgreSQL database."
   type        = string
-  
 }
 
 variable "database_hostname" {
   description = "The FQDN of the PostgreSQL server."
   type        = string
-  
+
 }

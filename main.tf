@@ -23,10 +23,11 @@ module "app_service" {
   admin_login         = var.postgres_admin_login
   admin_password      = data.azurerm_key_vault_secret.db_password.value
   api_key             = data.azurerm_key_vault_secret.api_key.value
-  app_encryption_key  = data.azurerm_key_vault_key.app_encryption_key.value
-  database_hostname   = module.database.db_hostname 
-  database_name       = module.database.db_name
-  depends_on          = [module.database]     
+  app_encryption_key  = data.azurerm_key_vault_secret.app_encryption_secret.value
+  database_hostname   = module.database.database_hostname
+  database_name       = module.database.database_name
+  depends_on          = [module.database]
+       
 }
 
 # 3. Database Module
