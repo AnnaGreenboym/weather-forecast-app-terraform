@@ -14,13 +14,13 @@ variable "resource_group_name" {
 }
 
 variable "vnet_cidr" {
-  type    = string
+  type    = list(string)
 }
 
 variable "db_subnet_cidr" {
-  type    = string
+  type    = list(string)
 }
 
 variable "app_subnet_cidr" {
-  type    = string
+  type    = list(string)
 }
