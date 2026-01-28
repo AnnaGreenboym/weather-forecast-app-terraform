@@ -26,6 +26,9 @@ module "app_service" {
   api_key             = data.azurerm_key_vault_secret.api_key.value
   app_encryption_key  = data.azurerm_key_vault_secret.app_encryption_secret.value
   database_hostname   = module.database.database_hostname
+  database_name       = module.database.database_name
+  app_subnet_cidr     = module.network.app_subnet_cidr
+
   depends_on          = [module.database]
        
 }
@@ -41,6 +44,10 @@ module "database" {
   admin_login            = var.postgres_admin_login
   admin_password         = data.azurerm_key_vault_secret.db_password.value
   local_developer_ip     = data.http.myip.response_body
+  db_subnet_id           = module.network.db_subnet_id
+  private_dns_zone_id    = module.network.private_dns_zone_id
+
+  depends_on             = [module.network]
 }
 
 # 4. Key Vault Module

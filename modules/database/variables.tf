@@ -33,3 +33,11 @@ variable "database_name" {
   description = "The name of the PostgreSQL database."
   type        = string
 }
+
+variable "db_subnet_cidr" {
+  type    = string
+}
+
+variable "private_dns_zone_id" {
+  type    = string
+}

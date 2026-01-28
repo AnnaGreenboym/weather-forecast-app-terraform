@@ -58,3 +58,8 @@ variable "database_hostname" {
   type        = string
 
 }
+
+variable "app_subnet_cidr" {
+  type        = string
+
+}

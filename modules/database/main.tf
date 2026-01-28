@@ -10,7 +10,10 @@ resource "azurerm_postgresql_flexible_server" "db" {
   sku_name               = "B_Standard_B1ms"
   storage_mb             = 32768
   
-  public_network_access_enabled = true
+  delegated_subnet_id = var.db_subnet_id
+  private_dns_zone_id = var.private_dns_zone_id
+
+  public_network_access_enabled = false
 }
 
 resource "azurerm_postgresql_flexible_server_database" "appdb" {
