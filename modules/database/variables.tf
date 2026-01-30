@@ -28,3 +28,16 @@ variable "local_developer_ip" {
   description = "The public IP address of the developer's machine."
   type        = string
 }
+
+variable "database_name" {
+  description = "The name of the PostgreSQL database."
+  type        = string
+}
+
+variable "db_subnet_id" {
+  type    = string
+}
+
+variable "private_dns_zone_id" {
+  type    = string
+}

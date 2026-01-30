@@ -23,3 +23,50 @@ variable "image_name" {
   type        = string
 }
 
+
+variable "api_key" {
+  description = "API key for weather service."
+  type        = string
+  sensitive   = true
+}
+
+variable "app_encryption_key" {
+  description = "Encryption key for the application."
+  type        = string
+  sensitive   = true
+}
+
+variable "admin_login" {
+  description = "The admin username for the PostgreSQL server."
+  type        = string
+  
+}
+
+variable "admin_password" {
+  description = "value from key vault"
+  type        = string
+  sensitive   = true
+}
+
+variable "database_name" {
+  description = "The name of the PostgreSQL database."
+  type        = string
+}
+
+variable "database_hostname" {
+  description = "The FQDN of the PostgreSQL server."
+  type        = string
+
+}
+
+variable "app_subnet_id" {
+  type        = string
+}
+
+variable "acr_name" {
+  type        = string
+}
+
+variable "acr_rg_name" {
+  type        = string
+}

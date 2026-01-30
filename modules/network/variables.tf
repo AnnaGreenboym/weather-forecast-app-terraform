@@ -13,12 +13,14 @@ variable "resource_group_name" {
   type        = string
 }
 
-variable "tenant_id" {
-  description = "The Azure Tenant ID."
-  type        = string
+variable "vnet_cidr" {
+  type    = list(string)
 }
 
-variable "app_service_principal_id" {
-  description = "The principal ID of the App Service's managed identity."
-  type        = string
+variable "db_subnet_cidr" {
+  type    = list(string)
+}
+
+variable "app_subnet_cidr" {
+  type    = list(string)
 }

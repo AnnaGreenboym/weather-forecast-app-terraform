@@ -16,12 +16,6 @@ variable "postgres_admin_login" {
   default     = "postadmin"
 }
 
-variable "postgres_admin_password" {
-  description = "The administrator password for the PostgreSQL database. MUST be complex."
-  type        = string
-  sensitive   = true
-}
-
 variable "login_server" {
   description = "ACR login server"
   type        = string
@@ -34,4 +28,33 @@ variable "image_name" {
   default     = "weather-app:latest"
 }
 
+variable "database_name" {
+  description = "The name of the PostgreSQL database."
+  type        = string
+  default     = "weatherdb"
+}
 
+variable "vnet_cidr" {
+  type    = list(string)
+  default = ["10.10.0.0/16"]
+}
+
+variable "db_subnet_cidr" {
+  type    = list(string)
+  default = ["10.10.1.0/24"]
+}
+
+variable "app_subnet_cidr" {
+  type    = list(string)
+  default = ["10.10.2.0/24"]
+}
+
+variable "acr_name" {
+  type        = string
+  default  = "weatherimage"
+}
+
+variable "acr_rg_name" {
+  type        = string
+  default   = "rg-working-israel"
+}
